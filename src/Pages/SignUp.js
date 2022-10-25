@@ -54,11 +54,11 @@ function SignUp() {
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={avatar}
-                                label="Select Avatar"
+                                // label="Select Avatar"
                                 onChange={handleChange}
                                 fullWidth
                             >
-                                <MenuItem value={'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'}>
+                                <MenuItem sx={{width:"20%"}} value={'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'}>
                                     <Avatar alt="Travis Howard" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" sx={{ width: 50, height: 50 }} />
                                 </MenuItem>
 
@@ -86,7 +86,7 @@ function SignUp() {
                             </Select>
                         </Box>
                         <Box>
-                            <Button color='success' fullWidth sx={{ p: 1.5 }} variant="contained" onClick={signup}>SignedIn</Button>
+                            <Button color='success' fullWidth sx={{ p: 1.5 }} variant="contained" onClick={signup}>Create Account</Button>
                         </Box>
                         <Box sx={{ p: 0.5 }}>
                             <Typography variant='span' color='white' >Already Have an Account ?</Typography>

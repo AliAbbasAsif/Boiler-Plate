@@ -114,7 +114,7 @@ function Navbar(props) {
                                 </Button>
                             ))}
                         </Box>
-                        <Typography sx={{ pr: 2 }}>{props.usertitlename}</Typography>
+                        
                         <Box sx={{ flexGrow: 0 }}>
 
                             <Tooltip title="Open settings">
@@ -122,6 +122,7 @@ function Navbar(props) {
                                     <Avatar alt="Remy Sharp" src={props.useravatar} />
                                 </IconButton>
                             </Tooltip>
+                            <Typography sx={{ pr: 2,fontSize:'13px' }} align="center">{props.usertitlename}</Typography>
                             <Menu
                                 sx={{ mt: '45px' }}
                                 id="menu-appbar"

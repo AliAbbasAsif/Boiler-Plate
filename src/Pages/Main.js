@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import Navbar from '../Components/Navbar';
 function Main() {
     const location = useLocation();
+    let data = location.state;
+    console.log(data)
     const navigate = useNavigate();
     return (
         <div>

@@ -1,14 +1,15 @@
 import { Avatar, Button, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { Box, } from '@mui/system'
-import React, { useState, } from 'react'
+import React, { useEffect, useState, } from 'react'
 import { useNavigate } from 'react-router-dom';
 import '../App.css'
 import { LoginUser, signUpUser } from '../Config/firebasemethods';
 
 function Login() {
-
+    var data;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+   
     let navigate = useNavigate()
     let login = () => {
         LoginUser({
@@ -16,15 +17,15 @@ function Login() {
             password
         }).then((success) => {
             console.log(success)
-            navigate('/main' , {
-
+            data = success;
+            navigate('/main' ,{
                 state: success
-
             })
         }).catch((err) => {
             console.log(err)
         })
     }
+
     let locate = () => {
 
         navigate('/signup')
