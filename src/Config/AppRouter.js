@@ -23,7 +23,7 @@ function AppRouter() {
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/account' element={<Account />} />
                     <Route path='/dashboard' element={<Dashboard />} />
-                    <Route path='/main' element={<Main />} />
+                    <Route path='/main:id' element={<Main />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/signup' element={<SignUp />} />
                 </Routes>

@@ -1,4 +1,4 @@
-import { Avatar, Button, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+import { Avatar, Button, CircularProgress, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { Box, } from '@mui/system'
 import React, { useState, } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -10,7 +10,7 @@ function SignUp() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
-    console.log(avatar)
+    const [isLoading, setLoader] = useState(false)
     const handleChange = (event) => {
         setAvatar(event.target.value);
 
@@ -23,18 +23,20 @@ function SignUp() {
     }
     let navigate = useNavigate()
     let signup = () => {
+        setLoader(true)
         signUpUser({ email, password, username, avatar })
             .then((success) => {
-                alert(success)
-                console.log(success)
+                setLoader(false)
                 navigate('/login')
             })
             .catch((error) => {
-                console.log(error)
+                alert(error)
+                setLoader(false)
             })
     }
     return (
         <div className='header'>
+        
             <Box style={mystyle}>
                 <Box sx={{ border: "2.5px solid white", borderRadius: "15px", color: "black", width: "35%", p: 3 }}  >
                     <Typography variant='h5' color="white" align='center' fontWeight='600' >Sign Up</Typography>
@@ -58,7 +60,7 @@ function SignUp() {
                                 onChange={handleChange}
                                 fullWidth
                             >
-                                <MenuItem sx={{width:"20%"}} value={'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'}>
+                                <MenuItem sx={{ width: "20%" }} value={'https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg'}>
                                     <Avatar alt="Travis Howard" src="https://media.sproutsocial.com/uploads/2022/06/profile-picture.jpeg" sx={{ width: 50, height: 50 }} />
                                 </MenuItem>
 
@@ -86,11 +88,13 @@ function SignUp() {
                             </Select>
                         </Box>
                         <Box>
-                            <Button color='success' fullWidth sx={{ p: 1.5 }} variant="contained" onClick={signup}>Create Account</Button>
+                            <Button color='success' disabled={isLoading} fullWidth sx={{ p: 1.5 }} variant="contained" onClick={signup}>
+                                {isLoading ? <CircularProgress color='inherit' /> : "Create Account"}
+                            </Button>
                         </Box>
                         <Box sx={{ p: 0.5 }}>
                             <Typography variant='span' color='white' >Already Have an Account ?</Typography>
-                            <Typography variant='span' color='white' sx={{textDecoration:"underline",cursor:"pointer",pl:0.5}} onClick={()=>navigate('/login')}>Login</Typography>
+                            <Typography variant='span' color='white' sx={{ textDecoration: "underline", cursor: "pointer", pl: 0.5 }} onClick={() => navigate('/login')}>Login</Typography>
                         </Box>
                     </Box>
                 </Box>

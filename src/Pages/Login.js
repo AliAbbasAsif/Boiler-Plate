@@ -1,4 +1,4 @@
-import { Avatar, Button, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
+import { Avatar, Button, CircularProgress, InputLabel, MenuItem, Select, TextField, Typography } from '@mui/material'
 import { Box, } from '@mui/system'
 import React, { useEffect, useState, } from 'react'
 import { useNavigate } from 'react-router-dom';
@@ -9,20 +9,24 @@ function Login() {
     var data;
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setLoader] = useState(false)
    
     let navigate = useNavigate()
     let login = () => {
+        setLoader(true)
         LoginUser({
             email,
             password
         }).then((success) => {
             console.log(success)
             data = success;
-            navigate('/main' ,{
+            setLoader(false)
+            navigate(`/main${success.id}` ,{
                 state: success
             })
         }).catch((err) => {
-            console.log(err)
+            setLoader(false)
+            alert(err)
         })
     }
 
@@ -53,9 +57,9 @@ function Login() {
                             <TextField color='warning' type={'password'} required fullWidth id="standard-basic" label="Password" onChange={(e) => setPassword(e.target.value)} variant="standard" />
                         </Box>
 
-                        <Box>
-                            <Button color='success' fullWidth sx={{ p: 1.5 }} variant="contained" onClick={login}>Login</Button>
-                        </Box>
+                        <Button color='success' disabled={isLoading} fullWidth sx={{ p: 1.5 }} variant="contained" onClick={login}>
+                                {isLoading ? <CircularProgress /> : "Login"}
+                            </Button>
                         <Box sx={{ p: 1.5 }}>
                             <Typography variant='span' color='white' >Dont Have an Account ?</Typography>
                             <Typography variant='span' color='white' sx={{ textDecoration: "underline", cursor: "pointer", pl: 0.5 }} onClick={() => navigate('/signup')}>SignIn</Typography>
