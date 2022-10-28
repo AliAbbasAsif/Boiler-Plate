@@ -12,6 +12,7 @@ import Account from '../Pages/Screens/Account';
 import Dashboard from '../Pages/Screens/Dashboard';
 import Profile from '../Pages/Screens/Profile';
 import SignUp from '../Pages/SignUp'
+import StudentForm from '../Pages/StudentForm';
 
 function AppRouter() {
     return (
@@ -22,6 +23,7 @@ function AppRouter() {
                     <Route path='/' element={<Home />} />
                     <Route path='/profile' element={<Profile />} />
                     <Route path='/account' element={<Account />} />
+                    <Route path='/Studentform' element={<StudentForm />} />
                     <Route path='/dashboard' element={<Dashboard />} />
                     <Route path='/main:id' element={<Main />} />
                     <Route path='/login' element={<Login />} />
