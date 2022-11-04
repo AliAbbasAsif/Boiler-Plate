@@ -1,6 +1,6 @@
 import React from "react";
 import { styled, useTheme } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -19,10 +19,14 @@ import ListItemText from "@mui/material/ListItemText";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
-import ForumIcon from "@mui/icons-material/Forum";
-import MapsUgcIcon from "@mui/icons-material/MapsUgc";
 import HomeIcon from "@mui/icons-material/Home";
+// import AddCourse from "../Pages/AdminControls/AddCourse";
+// import AdminQuiz from "../Pages/AdminControls/AdminQuiz";
+// import Students from "../Pages/AdminControls/Students";
+import PersonIcon from '@mui/icons-material/Person';
+import QuizIcon from '@mui/icons-material/Quiz';
+import DescriptionIcon from '@mui/icons-material/Description';
+
 
 const drawerWidth = 240;
 
@@ -94,7 +98,7 @@ const Drawer = styled(MuiDrawer, {
   }),
 }));
 
-function Minidrawer() {
+function CSDashboard() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [auth, setAuth] = React.useState(true);
@@ -144,8 +148,8 @@ function Minidrawer() {
             >
               <MenuIcon fontSize="large" />
             </IconButton>
-            <Typography variant="h6" noWrap component="div">
-              DASHBOARD
+            <Typography variant="h4" noWrap component="div">
+             DashBoard
             </Typography>
             <Box>
               {auth && (
@@ -215,7 +219,7 @@ function Minidrawer() {
               <ListItem
                 className="sideBtns"
                 onClick={() => {
-                  navigate("notifications");
+                  navigate("students");
                 }}
                 disablePadding
                 sx={{ display: "block" }}
@@ -234,17 +238,17 @@ function Minidrawer() {
                       justifyContent: "center",
                     }}
                   >
-                    <NotificationsActiveIcon color="primary" />
+                    <PersonIcon color="primary" />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Notifications"
+                    primary="Students"
                     sx={{ opacity: open ? 1 : 0 }}
                   />
                 </ListItemButton>
               </ListItem>
               <ListItem
                 onClick={() => {
-                  navigate("message");
+                  navigate("adminquiz");
                 }}
                 disablePadding
                 className="sideBtns"
@@ -264,17 +268,17 @@ function Minidrawer() {
                       justifyContent: "center",
                     }}
                   >
-                    <ForumIcon color="primary" />
+                    <QuizIcon color="primary" />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Messages"
+                    primary="AddQuiz"
                     sx={{ opacity: open ? 1 : 0 }}
                   />
                 </ListItemButton>
               </ListItem>
               <ListItem
                 onClick={() => {
-                  navigate("feedback");
+                  navigate("addcourse");
                 }}
                 disablePadding
                 className="sideBtns"
@@ -294,10 +298,10 @@ function Minidrawer() {
                       justifyContent: "center",
                     }}
                   >
-                    <MapsUgcIcon color="primary" />
+                    <DescriptionIcon color="primary" />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Feedback"
+                    primary="ADDCourses"
                     sx={{ opacity: open ? 1 : 0 }}
                   />
                 </ListItemButton>
@@ -337,13 +341,19 @@ function Minidrawer() {
           component="main"
           sx={{
             flexGrow: 1,
-            p: 3,
+            pt: 9,
           }}
         >
+          
+          <Routes>
+          {/* <Route path="addcourse" element={<AddCourse />} />
+          <Route path="students" element={<Students />} />
+          <Route path="adminquiz" element={<AdminQuiz />} /> */}
+          </Routes>
         </Box>
       </Box>
     </div>
   );
 }
 
-export default Minidrawer;
+export default CSDashboard;

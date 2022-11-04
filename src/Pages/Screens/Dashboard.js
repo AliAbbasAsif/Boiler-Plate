@@ -1,10 +1,10 @@
 import React from 'react'
-import Minidrawer from '../../Components/Minidrawer'
+import CSDashboard from '../../Components/CSDashboard'
 
 function Dashboard() {
   return (
     <div>
-      <Minidrawer />
+      <CSDashboard />
     </div>
   )
 }
