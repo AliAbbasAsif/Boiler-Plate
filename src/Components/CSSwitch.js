@@ -1,11 +1,14 @@
-import { Switch } from "@mui/material";
+import { FormControlLabel, Switch } from "@mui/material";
 import React from "react";
 
 function CSSwitch(props) {
-  const { label, onChange, value } = props;
+  const { label, onChange, checked } = props;
   return (
     <>
-      <Switch label={label} onChange={onChange} value={value} />
+    <FormControlLabel
+    control={<Switch  onChange={onChange} checked={checked} />}
+      label={label}
+    />
     </>
   );
 }

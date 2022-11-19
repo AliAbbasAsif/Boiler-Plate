@@ -5,13 +5,12 @@ import {
     Route,
     Routes
 } from "react-router-dom";
+import Admin from '../Pages/AdminScreens/Admin';
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
-import Main from '../Pages/Main';
-import Account from '../Pages/Screens/Account';
-import Dashboard from '../Pages/Screens/Dashboard';
-import Profile from '../Pages/Screens/Profile';
+import Profile from '../Pages/NavbarScreens/Profile';
 import SignUp from '../Pages/SignUp'
+import Tester from '../Pages/Tester'
 
 
 function AppRouter() {
@@ -20,13 +19,16 @@ function AppRouter() {
             <div>
 
                 <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path='/profile' element={<Profile />} />
-                    <Route path='/account' element={<Account />} />
-                    <Route path='/dashboard' element={<Dashboard />} />
-                    <Route path='/main:id' element={<Main />} />
-                    <Route path='/login' element={<Login />} />
+                    <Route path='/' element={<Login />} />
                     <Route path='/signup' element={<SignUp />} />
+                    <Route path='admin/*' element={<Admin />} />
+                    <Route path='/home' element={<Home />} />
+                    <Route path='/test' element={<Tester />} />
+                    <Route path='/profile' element={<Profile />} />
+                    {/* <Route path='/profile' element={<Profile />} />
+                    <Route path='/account' element={<Account />} />
+                    <Route path='/dashboard' element={<Dashboard />} /> */}
+    
                 </Routes>
             </div>
         </Router>

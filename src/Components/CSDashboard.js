@@ -6,7 +6,6 @@ import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -21,10 +20,8 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from '@mui/icons-material/Person';
-import QuizIcon from '@mui/icons-material/Quiz';
-import DescriptionIcon from '@mui/icons-material/Description';
-import AssignmentIcon from '@mui/icons-material/Assignment';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import First from "../Pages/AdminScreens/First";
+import { Signout } from "../Config/firebasemethods";
 
 
 const drawerWidth = 240;
@@ -120,82 +117,79 @@ function CSDashboard() {
   };
 
   const navigate = useNavigate();
-
+let signout=()=>{
+  Signout().then((suss)=>{
+    console.log(suss)
+    navigate('/')
+  })
+}
   return (
     <div>
-      {/* <Header /> */}
       <Box sx={{ display: "flex", flexGrow: 1 }}>
-        {/* <CssBaseline /> */}
         <AppBar
           sx={{
-            backgroundColor: "#003B5F",
+            backgroundColor: "#222",
             padding: "5px",
           }}
           position="fixed"
           open={open}
         >
+          
           <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{
-                marginRight: 2,
-                ...(open && { display: "none" }),
-              }}
-            >
-              <MenuIcon fontSize="large" />
-            </IconButton>
-            <Typography variant="h4" noWrap component="div">
-             DashBoard
-            </Typography>
-            <Box>
-              {auth && (
-                <div>
-                  <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="menu-appbar"
-                    aria-haspopup="true"
-                    onClick={handleMenu}
-                    color="inherit"
+            {auth && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  width: "100%",
+                }}
+              >
+                <IconButton
+                  color="inherit"
+                  aria-label="open drawer"
+                  onClick={handleDrawerOpen}
+                  edge="start"
+                  sx={{
+                    marginRight: 2,
+                    ...(open && { display: "none" }),
+                  }}
+                >
+                  <MenuIcon fontSize="large" />
+                </IconButton>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle fontSize="large" />
+                </IconButton>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorEl)}
+                  onClose={handleClose}
+                >
+                  <MenuItem
+                    onClick={signout}
+                    // style={{ color: "red", fontWeight: "bolder" }}
                   >
-                    <AccountCircle fontSize="large" />
-                  </IconButton>
-                  <Menu
-                    id="menu-appbar"
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "right",
-                    }}
-                    open={Boolean(anchorEl)}
-                    onClose={handleClose}
-                  >
-                    <MenuItem
-                      onClick={() => {
-                        navigate("profile");
-                      }}
-                    >
-                      Profile
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        navigate("myaccount");
-                      }}
-                    >
-                      My account
-                    </MenuItem>
-                  </Menu>
-                </div>
-              )}
-            </Box>
+                    LOGOUT
+                  </MenuItem>
+                </Menu>
+              </div>
+            )}
           </Toolbar>
         </AppBar>
         <Box>
@@ -215,10 +209,15 @@ function CSDashboard() {
             </DrawerHeader>
             {/* <Divider /> */}
             <List>
+
+
+
+
+
               <ListItem
                 className="sideBtns"
                 onClick={() => {
-                  navigate("students");
+                  navigate("first");
                 }}
                 disablePadding
                 sx={{ display: "block" }}
@@ -237,134 +236,24 @@ function CSDashboard() {
                       justifyContent: "center",
                     }}
                   >
-                    <PersonIcon color="primary" />
+                    <PersonIcon color="inherit" />
                   </ListItemIcon>
                   <ListItemText
-                    primary="Students"
+                    primary="First "
                     sx={{ opacity: open ? 1 : 0 }}
                   />
                 </ListItemButton>
               </ListItem>
-              <ListItem
-                onClick={() => {
-                  navigate("adminquiz");
-                }}
-                disablePadding
-                className="sideBtns"
-                sx={{ display: "block" }}
-              >
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <QuizIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="AddQuiz"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-              <ListItem
-                onClick={() => {
-                  navigate("addcourse");
-                }}
-                disablePadding
-                className="sideBtns"
-                sx={{ display: "block" }}
-              >
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <DescriptionIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="ADDCourses"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-              <ListItem
-                className="sideBtns"
-                onClick={() => {
-                  navigate("adminresult");
-                }}
-                disablePadding
-                sx={{ display: "block" }}
-              >
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <AssignmentIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="AdminResults"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
-              <ListItem
-                className="sideBtns"
-                onClick={() => {
-                  navigate("admintrainer");
-                }}
-                disablePadding
-                sx={{ display: "block" }}
-              >
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? "initial" : "center",
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
-                    sx={{
-                      minWidth: 0,
-                      mr: open ? 3 : "auto",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <AccountBoxIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText
-                    primary="AdminTrainers"
-                    sx={{ opacity: open ? 1 : 0 }}
-                  />
-                </ListItemButton>
-              </ListItem>
+            
+
+
+
+
+
+
+
+
+
               <Divider sx={{ backgroundColor: "#0277bd" }} />
               <ListItem
                 onClick={() => {
@@ -405,8 +294,8 @@ function CSDashboard() {
         >
           
           <Routes>
-          {/* <Route path="addcourse" element={<AddCourse />} /> */}
-         
+          <Route path="first" element={<First />} />
+        
           </Routes>
         </Box>
       </Box>

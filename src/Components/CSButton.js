@@ -1,9 +1,17 @@
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import React from "react";
 
 function CSButton(props) {
-  const { label, variant, onClick, color, startIcon, endIcon, disabled } =
-    props;
+  const {
+    label,
+    variant,
+    onClick,
+    color,
+    startIcon,
+    endIcon,
+    disabled,
+    loading = false,
+  } = props;
   return (
     <>
       <Button
@@ -16,7 +24,7 @@ function CSButton(props) {
         endIcon={endIcon}
         sx={{ p: 1.5 }}
       >
-        {label}
+        {loading ? <CircularProgress/> : label}
       </Button>
     </>
   );

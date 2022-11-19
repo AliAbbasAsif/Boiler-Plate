@@ -1,12 +1,9 @@
 import React from 'react'
 import CSDashboard from '../../Components/CSDashboard'
-
-function Dashboard() {
+export default function Admin() {
   return (
     <div>
-      <CSDashboard />
+      <CSDashboard/>
     </div>
   )
 }
-
-export default Dashboard

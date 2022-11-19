@@ -11,16 +11,16 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import AdbIcon from "@mui/icons-material/Adb";
 import MenuIcon from "@mui/icons-material/Menu";
 import "../App.css";
 import { useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 // const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 function Navbar(props) {
   let navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { name } = props;
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -143,7 +143,7 @@ function Navbar(props) {
                 </IconButton>
               </Tooltip>
               <Typography sx={{ pr: 2, fontSize: "13px" }} align="center">
-                {props.usertitlename}
+                {name}
               </Typography>
               <Menu
                 sx={{ mt: "45px" }}
